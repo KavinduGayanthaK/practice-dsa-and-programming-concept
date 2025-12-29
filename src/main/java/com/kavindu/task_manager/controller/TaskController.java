@@ -2,6 +2,7 @@ package com.kavindu.task_manager.controller;
 
 import com.kavindu.task_manager.model.Task;
 import com.kavindu.task_manager.service.TaskService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class TaskController {
     }
 
     @PostMapping
-    public String createTask(@RequestBody Task task) {
+    public String createTask(@Valid @RequestBody Task task) {
         taskService.addTask(task);
         return "Task Added Successfully!";
     }

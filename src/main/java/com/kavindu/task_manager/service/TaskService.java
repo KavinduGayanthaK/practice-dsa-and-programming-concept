@@ -1,5 +1,6 @@
 package com.kavindu.task_manager.service;
 
+import com.kavindu.task_manager.exception.TaskNotFoundException;
 import com.kavindu.task_manager.model.Task;
 import com.kavindu.task_manager.repository.TaskRepository;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,7 @@ public class TaskService {
     }
 
     public Task getTaskById(int id) {
-        return taskRepository.findById(id).orElse(null);
+        return taskRepository.findById(id).
+                orElseThrow(() -> new TaskNotFoundException("Task not found with id: "+id));
     }
 }
