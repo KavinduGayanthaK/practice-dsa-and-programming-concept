@@ -29,4 +29,19 @@ public class TaskService {
         return taskRepository.findById(id).
                 orElseThrow(() -> new TaskNotFoundException("Task not found with id: "+id));
     }
+
+    public Task updateTask(int id, Task taskDetails) {
+        Task existingTask = getTaskById(id);
+
+        existingTask.setTitle(taskDetails.getTitle());
+        existingTask.setDescription(taskDetails.getDescription());
+        existingTask.setCompleted(taskDetails.isCompleted());
+
+        return taskRepository.save(existingTask);
+    }
+
+    public void deleteTask(int id) {
+        Task existingTask = getTaskById(id);
+        taskRepository.delete(existingTask);
+    }
 }
