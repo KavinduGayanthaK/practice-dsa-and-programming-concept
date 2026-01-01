@@ -2,13 +2,12 @@ spring:
   application:
     name: task-manager
 
-    #H2 Database Configuration
   datasource:
-    url: jdbc:mysql://localhost:3306/task_manager
-    driverClassName: com.mysql.cj.jdbc.Driver
-    username: root
-    password: Kavindu1234*
-
+    # මෙතන තේරුම: DB_HOST කියලා එකක් හම්බුනොත් ඒක ගන්න, නැත්නම් localhost ගන්න.
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:task_manager}?ssl-mode=REQUIRED
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: update
